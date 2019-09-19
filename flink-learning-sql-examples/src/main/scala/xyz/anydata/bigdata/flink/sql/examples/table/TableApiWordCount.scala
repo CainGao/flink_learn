@@ -3,6 +3,7 @@ package xyz.anydata.bigdata.flink.sql.examples.table
 import org.apache.flink.api.scala._
 import org.apache.flink.table.api.scala._
 import org.apache.flink.table.api.Table
+import org.apache.flink.types.Row
 import xyz.anydata.bigdata.flink.sql.examples.model.User
 
 /**
@@ -31,8 +32,14 @@ object TableApiWordCount {
     table
       .groupBy("name")
       .select("name,age.sum as ages")
-      .toDataSet[User]
+      .toDataSet[Row]
       .print()
+
+    tableEnv.registerDataSet("USER",dataset,'name,'age)
+
+    val result = tableEnv.sqlQuery("SELECT name,age FROM `USER`")
+
+    result.toDataSet[Row].print()
 
   }
 
