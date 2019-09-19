@@ -37,7 +37,7 @@ object TableApiWordCount {
 
     tableEnv.registerDataSet("USER",dataset,'name,'age)
 
-    val result = tableEnv.sqlQuery("SELECT name,age FROM `USER`")
+    val result = tableEnv.sqlQuery("SELECT name,sum(age) FROM `USER` GROUP BY name")
 
     result.toDataSet[Row].print()
 
