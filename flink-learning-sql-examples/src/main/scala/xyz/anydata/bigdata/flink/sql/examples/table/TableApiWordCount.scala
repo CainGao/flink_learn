@@ -38,6 +38,10 @@ object TableApiWordCount {
     tableEnv.registerDataSet("USER",dataset,'name,'age)
 
     val result = tableEnv.sqlQuery("SELECT name,sum(age) FROM `USER` GROUP BY name")
+    //使用Table对象注册Table
+    tableEnv.registerTable("TABLE_RES",table)
+    //输出注册的Table中的内容
+    tableEnv.sqlQuery("SELECT * FROM `TABLE_RES`").toDataSet[Row].print()
 
     result.toDataSet[Row].print()
 
