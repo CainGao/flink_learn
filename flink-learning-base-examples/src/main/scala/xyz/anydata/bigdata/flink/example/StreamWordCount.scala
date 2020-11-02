@@ -5,8 +5,10 @@ import org.apache.flink.streaming.api.windowing.time.Time
 
 
 /**
-  * 功能描述 TODO 
-  *
+  * 功能描述 socket stream
+  *  首先控制台开启 9999 端口
+  *     Linux: nc -lk 9999
+  *     Mac:   netcat -l -p 9999
   * @author CainGao
   * @version V_1.0
   * @date 2019/8/9 10:58
@@ -31,6 +33,7 @@ object StreamWordCount {
     //打印结果到控制台
     counts.print()
 
+    env.execute("word count stream --- window 5s")
   }
 
 
