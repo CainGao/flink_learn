@@ -15,7 +15,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <flink.v1_11.version>1.11.2</flink.v1_11.version>
+        <flink.v1_11.version>1.9.2</flink.v1_11.version>
     </properties>
 
     <dependencies>
